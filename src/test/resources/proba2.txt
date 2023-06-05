@@ -1,1 +1,1 @@
-test proba2.txt
+test proba2.txtigbib
