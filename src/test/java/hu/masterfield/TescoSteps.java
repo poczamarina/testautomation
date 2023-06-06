@@ -20,6 +20,8 @@ import java.io.InputStream;
 import java.time.Duration;
 import java.util.Properties;
 
+import static org.junit.Assert.assertEquals;
+
 public class TescoSteps {
 
     protected static WebDriver driver;
@@ -57,24 +59,40 @@ public class TescoSteps {
     public void openMainPage() {
         driver.get("https://bevasarlas.tesco.hu/groceries/");
     }
+
     @And("accept cookies")
     public void acceptCookies() throws InterruptedException {
         ////*[@id="sticky-bar-cookie-wrapper"]/span/div/div/div[2]/form[1]/button
         ///html/body/div[1]/div/div/div[1]/div/span/div/div/div[2]/form[1]/button
-        WebElement acceptButton = wait.until(driver -> driver.findElement(By.xpath("//html/body/div[1]/div/div/div[1]/div/span/div/div/div[2]/form[1]/button")));
+        WebElement acceptButton = wait.until(driver -> driver.findElement(By.xpath("//*[@id=\"sticky-bar-cookie-wrapper\"]/span/div/div/div[2]/form[1]/button")));
         acceptButton.click();
-        Thread.sleep(10000);
     }
 
+//*[@id="utility-header-language-switch-link"]/span/span
+
     @Given("language is set to {string}")
-    public void languageIsSetTo(String arg0) {
+    public void languageIsSetTo(String lang ) throws InterruptedException {
+
+        WebElement langButton = driver.findElement(By.xpath("//*[@id=\"utility-header-language-switch-link\"]/span/span"));
+
+        if(langButton.getText().equals("Magyar") && lang.equals("magyar")) {
+            langButton.click();
+
+        }
+        else if(langButton.getText().equals("English") && lang.equals("english")) {
+            langButton.click();
+
+        }
     }
 
     @When("change the language to {string}")
     public void changeTheLanguageTo(String arg0) {
+        //lang equals magyar -> kattinson rá -> magyar lesz a nyelv
+
     }
 
     @Then("it shows elements in {string}")
     public void itShowsElementsIn(String arg0) {
+        //a feliratok magyarul vannak
     }
 }
