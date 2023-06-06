@@ -86,13 +86,19 @@ public class TescoSteps {
     }
 
     @When("change the language to {string}")
-    public void changeTheLanguageTo(String arg0) {
-        //lang equals magyar -> kattinson rá -> magyar lesz a nyelv
-
+    public void changeTheLanguageTo(String newLang) throws InterruptedException {
+        languageIsSetTo(newLang);
     }
 
     @Then("it shows elements in {string}")
-    public void itShowsElementsIn(String arg0) {
-        //a feliratok magyarul vannak
+    public void itShowsElementsIn(String newLang) {
+        WebElement langButton = driver.findElement(By.xpath("//*[@id=\"utility-header-language-switch-link\"]/span/span"));
+
+        if(newLang.equals("magyar")) {
+            assertEquals("English", langButton.getText());
+        }
+        else if(newLang.equals("english")) {
+            assertEquals("Magyar", langButton.getText());
+        }
     }
 }
