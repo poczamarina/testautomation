@@ -1,4 +1,4 @@
-package hu.masterfield;
+package hu.masterfield.steps;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -22,7 +22,7 @@ import java.util.Properties;
 
 import static org.junit.Assert.assertEquals;
 
-public class TescoSteps {
+public class ChangeLangSteps {
 
     protected static WebDriver driver;
 
@@ -34,7 +34,7 @@ public class TescoSteps {
 
         // loading arguments, properties
         Properties props = new Properties(); // java.util
-        InputStream is = TescoSteps.class.getResourceAsStream("/browser.properties");
+        InputStream is = ChangeLangSteps.class.getResourceAsStream("/browser.properties");
         props.load(is);
 
         // set chrome options

@@ -1,4 +1,4 @@
-package hu.masterfield;
+package hu.masterfield.runners;
 
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
