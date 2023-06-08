@@ -9,6 +9,7 @@ public class SearchResultPage extends BasePage {
     }
 
     public void validate() {
+
     }
 
 }

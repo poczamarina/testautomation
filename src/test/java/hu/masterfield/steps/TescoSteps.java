@@ -1,5 +1,8 @@
 package hu.masterfield.steps;
 
+import hu.masterfield.pages.BasePage;
+import hu.masterfield.pages.HomePage;
+import hu.masterfield.pages.SearchResultPage;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
@@ -58,76 +61,77 @@ public class TescoSteps {
 
     @Given("open main page")
     public void openMainPage() {
-        driver.get("https://bevasarlas.tesco.hu/groceries/");
+    HomePage hp =new HomePage(driver);
+        hp.openPage();
     }
 
     @And("accept cookies")
     public void acceptCookies() throws InterruptedException {
-        ////*[@id="sticky-bar-cookie-wrapper"]/span/div/div/div[2]/form[1]/button
-        ///html/body/div[1]/div/div/div[1]/div/span/div/div/div[2]/form[1]/button
-        WebElement acceptButton = wait.until(driver -> driver.findElement(By.xpath("//*[@id=\"sticky-bar-cookie-wrapper\"]/span/div/div/div[2]/form[1]/button")));
-        acceptButton.click();
+        HomePage hp =new HomePage(driver);
+        hp.acceptCookies();
     }
 
 
     @Given("language is set to {string}")
     public void languageIsSetTo(String lang ) throws InterruptedException {
-
-        WebElement langButton = driver.findElement(By.xpath("//*[@id=\"utility-header-language-switch-link\"]/span/span"));
-
-        if(langButton.getText().equals("Magyar") && lang.equals("magyar")) {
-            langButton.click();
-
-        }
-        else if(langButton.getText().equals("English") && lang.equals("english")) {
-            langButton.click();
-
-        }
+        HomePage hp =new HomePage(driver);
+        hp.setLangButton(lang);
     }
 
     @When("change the language to {string}")
     public void changeTheLanguageTo(String newLang) throws InterruptedException {
         languageIsSetTo(newLang);
     }
+    @Then("it shows elements in {string}")
+    public void itShowsElementsIn(String newLang) {
+       WebElement langButton = driver.findElement(By.xpath("//*[@id=\"utility-header-language-switch-link\"]/span/span"));
+
+        if(newLang.equals("magyar")) {
+            assertEquals("English", langButton.getText());
+        }
+        else if(newLang.equals("english")) {
+            assertEquals("Magyar", langButton.getText());
+        }
+    }
+
 
     @Given("search bar is on the page")
     public void searchBarIsOnThePage() {
-        ///html/body/div[1]/div/div/div[2]/div/header/div/div[2]/div/form/input[1]
         WebElement searchButton = wait.until(driver -> driver.findElement(By.xpath("html/body/div[1]/div/div/div[2]/div/header/div/div[2]/div/form/input[1]")));
-        //olyan oldalon állok ahol van keresősáv
+    }
+
+    @And("the language is {string}")
+    public void theLanguageIs(String lang) {
+        HomePage hp =new HomePage(driver);
+        hp.setLangButton(lang);
     }
 
     @When("search a {string} which exist")
     public void searchAWhichExist(String product) throws InterruptedException {
-
-        WebElement searchButton = wait.until(driver -> driver.findElement(By.xpath("/html/body/div[1]/div/div/div[2]/div/header/div/div[2]/div/form/div/div[1]/div/input")));
-        searchButton.click();
-        searchButton.sendKeys(product);
-        WebElement searchIcon = wait.until(driver -> driver.findElement(By.xpath("/html/body/div[1]/div/div/div[2]/div/header/div/div[2]/div/form/button/span")));
-        searchIcon.click();
-        Thread.sleep(10000);
-
-        /*
-        HomePage homePage =new HomePage(driver);
-        assertEquals("https://tesco/hu-hu", homePage.getURL());
-        SearchResultPage searchResultPage = homePage.search(product);
-        searchResultPage.validate();
-        assertEquals("https://bevasarlas.tesco.hu/groceries/en-GB/search", searchResultPage.getURL());
-
-         */
+        HomePage hp =new HomePage(driver);
+        hp.search(product);
     }
 
 
-    @Then("it shows the results")
-    public void itShowsTheResults() {
+    @Then("it shows the results which contains {string}")
+    public void itShowsTheResultsWhichContains(String product) throws InterruptedException {
+        HomePage hp =new HomePage(driver);
+        assertEquals("https://bevasarlas.tesco.hu/groceries/hu-HU/search?query="+product, hp.getURL());
     }
 
-    @When("search a product which is not exist")
-    public void searchAProductWhichIsNotExist() {
+
+    @When("search a {string} which is not exist")
+    public void searchAWhichIsNotExist(String product) {
+        HomePage hp =new HomePage(driver);
+        hp.search(product);
     }
 
-    @Then("it shows not found message")
-    public void itShowsNotFoundMessage() {
+    @Then("it shows not found the {string} message")
+    public void itShowsNotFoundTheMessage(String product) throws InterruptedException {
+        HomePage hp =new HomePage(driver);
+        assertEquals("https://bevasarlas.tesco.hu/groceries/hu-HU/search?query="+product, hp.getURL());
     }
+
+
 
 }

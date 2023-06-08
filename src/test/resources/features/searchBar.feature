@@ -9,15 +9,21 @@ Feature: The user shall be able to search in products in Tesco
     @TC_SearchWithResults
     Scenario Outline: Search with results
       Given search bar is on the page
+      And the language is "<lang>"
       When search a "<product>" which exist
-      Then it shows the results
+      Then it shows the results which contains "<product>"
       Examples:
-        | product  |
-        | apple    |
-     #  | liszt   |
+        | product  | lang   |
+        | alma    | magyar |
+        | liszt   | magyar |
 
     @TC_SearchWithoutResults
-    Scenario: Search without results
+    Scenario Outline: Search without results
       Given search bar is on the page
-      When search a product which is not exist
-      Then it shows not found message
+      And the language is "<lang>"
+      When search a "<product>" which is not exist
+      Then it shows not found the "<product>" message
+      Examples:
+        |   product     | lang  |
+        | nincsilyen    |magyar |
+        | ilyensem      |magyar |
