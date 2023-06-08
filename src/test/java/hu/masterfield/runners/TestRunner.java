@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "classpath:features",
         glue = {"hu.masterfield"},
-        tags = "@important",
+        tags = "@TC_SearchWithResults",
         plugin = { "pretty", "summary", "json:target/cucumber-reports.json",
                 "junit:target/cucumber-reports.xml", "html:target/cucumber-reports.html",
                 "rerun:target/cucumber-rerun.txt"},
