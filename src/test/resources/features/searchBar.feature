@@ -13,7 +13,7 @@ Feature: The user shall be able to search in products in Tesco
       Then it shows the results
       Examples:
         | product  |
-        | alma    |
+        | apple    |
      #  | liszt   |
 
     @TC_SearchWithoutResults

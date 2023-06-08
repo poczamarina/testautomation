@@ -18,6 +18,11 @@ public class BasePage {
 
         PageFactory.initElements(driver, this);
     }
+    public String getURL() {
+        return driver.getCurrentUrl();
+    }
+
+    /* base metódusok */
 
 
 }
