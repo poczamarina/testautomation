@@ -2,6 +2,7 @@ package hu.masterfield.steps;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -52,6 +53,7 @@ public class SearchBarSteps {
         driver.quit();
     }
 
+
     @Given("search bar is on the page")
     public void searchBarIsOnThePage() {
         ///html/body/div[1]/div/div/div[2]/div/header/div/div[2]/div/form/input[1]
@@ -59,8 +61,8 @@ public class SearchBarSteps {
         //olyan oldalon állok ahol van keresősáv
     }
 
-    @When("search a product which exist")
-    public void searchAProductWhichExist(String product) {
+    @When("search a {string} which exist")
+    public void searchAWhichExist(String product) {
         WebElement searchButton = wait.until(driver -> driver.findElement(By.xpath("html/body/div[1]/div/div/div[2]/div/header/div/div[2]/div/form/input[1]")));
         searchButton.click();
         searchButton.sendKeys(product);
@@ -79,4 +81,6 @@ public class SearchBarSteps {
     @Then("it shows not found message")
     public void itShowsNotFoundMessage() {
     }
+
+
 }

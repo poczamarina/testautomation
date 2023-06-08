@@ -68,7 +68,6 @@ public class ChangeLangSteps {
         acceptButton.click();
     }
 
-//*[@id="utility-header-language-switch-link"]/span/span
 
     @Given("language is set to {string}")
     public void languageIsSetTo(String lang ) throws InterruptedException {

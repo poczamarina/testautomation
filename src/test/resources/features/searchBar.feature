@@ -7,10 +7,14 @@ Feature: The user shall be able to search in products in Tesco
       And accept cookies
 
     @TC_SearchWithResults
-    Scenario: Search with results
+    Scenario Outline: Search with results
       Given search bar is on the page
-      When search a <product> which exist
+      When search a "<product>" which exist
       Then it shows the results
+      Examples:
+        | product  |
+        | alma    |
+     #  | liszt   |
 
     @TC_SearchWithoutResults
     Scenario: Search without results
