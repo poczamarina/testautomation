@@ -1,8 +1,8 @@
 @objects
-    header   css .responsive-background--image tile__image
+    picture   css .tile__image-container
 
-= Header =
+= Picture =
     @on desktop
-        title:
-            width   900px
-            height  254px
+        picture:
+            width   652px
+            height  231px

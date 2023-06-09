@@ -34,10 +34,10 @@ public class BBQLayoutTest extends GalenJUnitTestBase {
 //        test.createDriver();
     }
     @Test
-    @DisplayName("TC2 - SauceDemo login")
+    @DisplayName("TC1 - Tesco BBQ")
     public void TC2() throws IOException {
         driver.get("https://bevasarlas.tesco.hu/groceries/hu-HU/zone/bbq/");
-        WebElement header = wait.until(driver -> driver.findElement(By.className("responsive-background--image tile__image")));
+        WebElement header = wait.until(driver -> driver.findElement(By.className("tile__image-container")));
         layoutReport = Galen.checkLayout(driver, "/specs/bbqLayout.gspec", Arrays.asList(new String[]{"desktop"}));
     }
     @AfterAll

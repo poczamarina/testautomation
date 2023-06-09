@@ -22,7 +22,4 @@ public class BasePage {
         return driver.getCurrentUrl();
     }
 
-    /* base metódusok */
-
-
 }
