@@ -36,11 +36,11 @@ public class HomePage extends BasePage{
         acceptButton.click();
     }
 
-    public void search(String product) {
+    public SearchResultPage search(String product) {
         searchButton.click();
         searchButton.sendKeys(product);
         searchIcon.click();
-        //return new SearchResultPage(driver);
+        return new SearchResultPage(driver);
     }
 
 

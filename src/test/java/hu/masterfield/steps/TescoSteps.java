@@ -122,8 +122,9 @@ public class TescoSteps {
 
     @When("search a {string} which is not exist")
     public void searchAWhichIsNotExist(String product) {
-        HomePage hp =new HomePage(driver);
-        hp.search(product);
+        HomePage hp = new HomePage(driver);
+        SearchResultPage searchResultPage = hp.search(product);
+        searchResultPage.validate();
     }
 
     @Then("it shows not found the {string} message")

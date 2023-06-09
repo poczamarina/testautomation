@@ -22,7 +22,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-public class BBQLayoutTest extends GalenJUnitTestBase {
+public class BBQLayoutTest {
     static WebDriver driver;
     static WebDriverWait wait;
     @BeforeAll
@@ -35,7 +35,7 @@ public class BBQLayoutTest extends GalenJUnitTestBase {
     }
     @Test
     @DisplayName("TC1 - Tesco BBQ")
-    public void TC2() throws IOException {
+    public void TC1() throws IOException {
         driver.get("https://bevasarlas.tesco.hu/groceries/hu-HU/zone/bbq/");
         WebElement header = wait.until(driver -> driver.findElement(By.className("tile__image-container")));
         layoutReport = Galen.checkLayout(driver, "/specs/bbqLayout.gspec", Arrays.asList(new String[]{"desktop"}));
@@ -46,12 +46,6 @@ public class BBQLayoutTest extends GalenJUnitTestBase {
         driver.quit();
     }
 
-    @Override
-    public WebDriver createDriver() {
-        super.driver.set(driver);
-        super.report.set(new TestReport());
-        return driver;
-    }
     static LayoutReport layoutReport;
     public static void reportUpdate() {
         try {

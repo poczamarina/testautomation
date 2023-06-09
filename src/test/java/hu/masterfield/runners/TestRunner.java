@@ -2,6 +2,7 @@ package hu.masterfield.runners;
 
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)

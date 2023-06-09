@@ -1,8 +1,31 @@
 @objects
-    picture   css .tile__image-container
+# locatorral kereses
+    picture_css_alapjan     css     .tile__image-container
+    picture_id_alapjan      id      responsive-background--4
+    picture_xpath_alapjan   xpath   /html/body/div[1]/div/div/div[3]/div[1]/div/div[1]/div/div/div/div[5]/div[1]/a/div[1]/div/span/img
+    menu_item-*             css     .ui-panel
+#  alapertelmezett css kereses -> nem mukodik ha nincs locator
+#    tile__heading      #tile__heading
+#    main__sidebar      #main__sidebar
+#   content-section    #content-section
+#  Multiple objects definition
+#  Objects corrections
+#  Object Groups
 
 = Picture =
     @on desktop
-        picture:
-            width   652px
-            height  231px
+        picture_css_alapjan:
+            width   719px
+            height  203px
+
+        picture_id_alapjan:
+            width   348px
+            height  201px
+
+        picture_xpath_alapjan:
+            width   224px
+            height  224px
+
+        menu_item-*:
+            width   743px
+
