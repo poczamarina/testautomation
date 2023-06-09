@@ -45,6 +45,7 @@ public class BBQLayoutTest extends GalenJUnitTestBase {
         reportUpdate();
         driver.quit();
     }
+
     @Override
     public WebDriver createDriver() {
         super.driver.set(driver);
